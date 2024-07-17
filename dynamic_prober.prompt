@@ -1,0 +1,76 @@
+You are going to return a JSON file that contains a follow-up question to a
+user's answer based on the instructions and chat history provided below.
+
+-- Begin Instructions --
+
+You are going to ask a probing question based on the chat history provided
+below.
+
+First, review the provided chat history. Identify whether the user has stated
+how important an issue this topic is. If so, record the users stated importance
+using the following scale: "not very important", "somewhat important", or "very
+important". If the user did not state how important the topic was, record "not
+provided".
+
+Second, record any reasons for why they chose that level of importance. For
+example, a user may provide an example situation as evidence of why it matters
+or they may note their believe that it matters less than another topic.
+
+Third, consider and record possible future areas to explore via questioning.
+What information is missing from the user's answer and which parts could use
+more clarification and elaboration. Your goal is to understand why they
+assigned a given score.
+
+Finally, propose a question that would encourage the participant to elaborate on
+their opinion. For example, possible questions may ask the participant why
+they hold that opinion or about personal experiences that contributed to their opinion.
+Encoruage the participant to think critically, but be sure to respond kindly and
+sympathetically.
+
+-- End Instructions --
+
+Here's the chat history, where INTERVIEWER is the interviewer, and USER is the
+user, separated with ';;':
+
+-- BEGIN CHAT HISTORY -- 
+{{$recent_history}} 
+-- END CHAT HISTORY --
+
+Return a JSON file with the following format: {
+    "importance": <string>, "reasoning": <string>, "exploration": <string>,
+    "question": <string>
+}
+
+-- EXAMPLES --
+
+USER :: 'I feel neutral about fairness because I care more about privacy.'
+
+INTERVIEWER :: {
+    "importance": "somewhat important", "reasoning": "user cares more about
+    privacy than fairness", "exploration": "reasoning for that opinion",
+    "question": "It's interesting that you think privacy is more important 
+    than fairness. Can you think of a that contributed to that opinion?"
+}
+
+---
+
+USER :: 'I don't care about performance.'
+
+INTERVIEWER :: {
+    "importance": "not very important", "reasoning": "not provided",
+    "exploration": "what aspects of performance does the user care or not care
+    about", "question": "I'm curious about how the stakes affect your position.
+    Can you provide some examples of why you feel this way?"
+}
+
+---
+
+USER :: 'whatever asdfasdf'
+
+INTERVIEWER :: {
+    "importance": "not provided", "reasoning": "not provided", "exploration" :
+    "pose the original question again", "question": "Sorry, let's try to stay on
+    track. How important is it that an AI system performs well?",
+}
+
+-- END EXAMPLES --

@@ -1,0 +1,48 @@
+You will qualitatively code chat segments between a human and a chatbot.
+You will be provided with a chat segment example, concept definitions, a coding guide, and coded examples. Your output will be a JSON string with the following fields: 'relevance', 'specificity', 'clarity', 'cog_empathy_score',
+'palpability_score', 'follow_up_score', 'self_awareness_score', as well as reasoning for each of the scores.
+
+-- BEGIN INSTRUCTIONS --
+First, review the provided chat segment example. 
+Second, review the following definitions and coding guide for each of the fields:
+- Relevance: A high-quality answer should be relevant to the question asked. Certain responses are considered partially relevant as they did not answer an asked question directly but still provided useful input.
+- Clarity: A response is clear if it could be understood by humans without ambiguity, regardless of its topical focus.
+- Specificity: Specific responses often provide sufficient details, which not only help information collectors better understand and utilize the responses, but also enable them to acquire more valuable, in-depth insights. 
+- Cognitive Empathy: The degree to which the researcher understands how those interviewed or observed view the world and themselves, from their perspective.
+- Palpability: The extent to which the reported findings are presented concretely rather than abstractly.
+- Follow-up: The extent to which the researcher failed to achieve deeper inquiry due to difficulties in communication or failure to recognize previous information, resulting in repetitive interactions. 
+- Self-awareness: The extent to which the researcher understands the impact of who they are on those interviewed and observed.
+Third, based on the above definitions, consider the following coding guide.
+
+-- CODING GUIDE --
+"relevance_reasoning" (str): the reasoning behind the relevance score.
+"relevance" (int in[0,1,2]):   The value should be: 0 if irrelevant, 1 if somewhat relevant, and 2 if relevant.
+"specificity_reasoning" (str): the reasoning behind the specificity score.
+"specificity" (int in [0,1,2]): The value should be 0 if the segment contains a generic description only, 1 if it contains specific concepts, and 2 if it contains specific concepts with detailed examples.
+"clarity_reasoning" (str): the reasoning behind the clarity score.
+"clarity" (int in [0,1,2]):  The value should be 0 if not clear, 1 if somewhat clear, and 2 if clear.
+"cog_empathy_reasoning" (str): the reasoning behind the cog_empathy_score.
+"cog_empathy_score" (int in [0,1]): whether the chatbot was able to surface the ''why'' behind a stated belief in the segment (yes/no). 1 if yes 0 if no.
+"palpatibility_reasoning" (str): the reasoning behind the palpability_score.
+"palpability_score" (int in [0,1]): whether the chatbot was able to elicit concrete and personal examples supporting their beliefs, rather than generic or abstract answer. (concrete/generic) 1 if concrete, 0 if generic.
+"follow_up_reasoning" (str): the reasoning behind the follow_up_score.
+"follow_up_score" (int in [-1,0]): whether the flow of the conversation was natural or poor, as evidenced by any failure modes in the conversation, such as repetition, or disruption. 0 if natural, -1 if poor.
+"self_awareness_reasoning" (str): the reasoning behind the self_awareness_score.
+"self_awareness_score" (int in [-1, 0]): whether the chatbot impacted the conversation negatively by imposing biases or assumptions, or whether the interviewee referenced the fact that they were communicating with a chatbot (neutral/negative), 0 if neutral, -1 if negative.
+-- END CODING GUIDE --
+
+Fourth, consider the coded examples below.
+Fifth, using the coding guide and the coding guide, code the chat segment.
+
+-- END INSTRUCTIONS --
+
+-- BEGIN EXAMPLES --
+{{$segment_example_1}}
+{{$segment_example_2}}
+{{$segment_example_3}}
+{{$segment_example_4}}
+-- END EXAMPLES
+
+-- BEGIN CHAT SEGMENT --
+{{$chat_segment}}
+-- END CHAT SEGMENT --

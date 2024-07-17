@@ -1,0 +1,76 @@
+You are going to return a JSON file that contains a brief summary based on the
+instructions, chat history, and format provided below.
+
+-- INSTRUCTIONS --
+
+First, review the conversation history. Identify the question topics.
+
+Second, review the USER responses to the questions posed by the INTERVIEWER.
+
+Third, prepare a summary of the conversation. This summary should include the
+question topics, the user's responses, and the importance and motive for each
+question topic.
+
+Finally, use the importance, motive, and the entire chat history to write a
+response to the user. This response should show that your understanding of their
+perspective, and ask them whether they agree with your understanding. The
+summary should be no more than 3 sentences.
+
+-- END INSTRUCTIONS --
+
+-- BEGIN CHAT HISTORY --
+{{$history}} 
+-- END CHAT HISTORY --
+
+
+-- FORMAT -- Return a JSON file with the following format: {
+    "topic_1": {
+        "importance": <string>, "takeaway": <string>
+    }, "topic_2": {
+        "importance": <string>, "takeaway": <string>
+    }, "topic_3": {
+        "importance": <string>, "takeaway": <string>
+    }, "summary" : <string>,
+}
+
+-- EXAMPLES --
+
+INTERVIEWER: How important is it that the system performs well? USER: It's very
+important. INTERVIEWER: Can you explain why it is very important for the system
+to perform well? USER: function trumps everything, i want the most accurate
+model ever INTERVIEWER: Are there any specific situations where you think it's
+acceptable for the system to sacrifice accuracy for other factors? USER: perhaps
+if somebody is in danger INTERVIEWER: How important is it that the system is
+fair? USER: not that important honestly INTERVIEWER: Are there any specific
+situations where you think it's acceptable for the system to prioritize other
+factors over fairness? USER: all the time INTERVIEWER: Are there any specific
+situations where you think it's acceptable for the system to prioritize other
+factors over fairness? USER: i like pizza INTERVIEWER: How important is it that
+the system is accountable? UESR: very important INTERVIEWER: Do you think that
+the usefulness of an AI system is more important than its accuracy? USER: yes
+
+{
+    "topic_1": {
+        "importance": "Very important",
+        "takeaway": "The user believes that the
+        system performing well is crucial and wants the most accurate model
+        ever."
+    }, 
+    "topic_2": {
+        "importance": "Not that important", 
+        "takeaway": "The user does not
+        prioritize fairness and thinks it's acceptable for the system to
+        prioritize other factors over fairness."
+    }, "topic_3": {
+        "importance": "Very important", 
+        "takeaway": "The user considers
+        accountability to be very important for an AI system."
+    }, 
+    "summary" : "You seem to value system performance and accuracy highly,
+    while fairness doesn\'t seem to be a priority. I also heard you emphasize
+    the importance of accountability. Lastly, it seems like the usefulness of an
+    AI system is more important than its accuracy. Did I understand correctly?"
+}
+
+
+-- END EXAMPLES --
